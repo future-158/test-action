@@ -1,0 +1,19 @@
+jobs:
+  example-3:
+    name: github action
+    runs-on: "ubuntu-latest"
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: venv/
+          environment-file: environment.yml
+          python-version: 3.8
+          condarc-file: condarc.yml
+          auto-activate-base: false
+      - run: |
+          conda info
+          conda list
